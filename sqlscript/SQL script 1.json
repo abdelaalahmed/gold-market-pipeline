@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "CREATE DATABASE GoldAnalyticsDB;\n\nCREATE EXTERNAL DATA SOURCE MyAzureDataLakeSource\nWITH (\n    LOCATION = 'https://stgoldmarketanalytics.dfs.core.windows.net'\n);\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "GoldAnalyticsDB",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
