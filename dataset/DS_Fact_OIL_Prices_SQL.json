@@ -1,0 +1,30 @@
+{
+	"name": "DS_Fact_OIL_Prices_SQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSQLDatabase_LS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DateKey",
+				"type": "date"
+			},
+			{
+				"name": "Commodity_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Brent_Crude_Price",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Fact_Oil_Prices"
+		}
+	}
+}

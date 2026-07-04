@@ -1,0 +1,37 @@
+{
+	"name": "DS_oil_Data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "f_oil.csv",
+				"folderPath": "oil data",
+				"container": "bronze"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Brent_Crude_Price",
+				"type": "String"
+			},
+			{
+				"name": "Commodity_ID",
+				"type": "String"
+			}
+		]
+	}
+}

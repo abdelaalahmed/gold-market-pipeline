@@ -1,0 +1,34 @@
+{
+	"name": "DS_Fact_EXCHANG_Prices_SQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSQLDatabase_LS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DateKey",
+				"type": "date"
+			},
+			{
+				"name": "Currency_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "USD_to_EGP",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Indicator_ID",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Fact_Exchange_Rates"
+		}
+	}
+}
