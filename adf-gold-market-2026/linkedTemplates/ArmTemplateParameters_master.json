@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-gold-market-2026"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureSQLDatabase_LS_password": {
+			"value": ""
+		},
+		"AzureSQLDatabase_LS_properties_typeProperties_server": {
+			"value": "gold-market-srv-2026-xyz.database.windows.net"
+		},
+		"AzureSQLDatabase_LS_properties_typeProperties_database": {
+			"value": "GoldMarketDB"
+		},
+		"AzureSQLDatabase_LS_properties_typeProperties_userName": {
+			"value": "abdelaal"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
