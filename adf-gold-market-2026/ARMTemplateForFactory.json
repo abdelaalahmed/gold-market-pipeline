@@ -1373,6 +1373,44 @@
 				"[concat(variables('factoryId'), '/pipelines/PL_Gold')]",
 				"[concat(variables('factoryId'), '/pipelines/PL_Oil')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Daily_Master_Run')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_Master_Data_Loader",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2026-07-05T08:16:00",
+						"timeZone": "Egypt Standard Time",
+						"schedule": {
+							"minutes": [
+								1
+							],
+							"hours": [
+								8
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_Master_Data_Loader')]"
+			]
 		}
 	]
 }
