@@ -1,6 +1,2 @@
 pandas
-playwright
-requests
-lxml
-cloudscraper
-
+yfinance
