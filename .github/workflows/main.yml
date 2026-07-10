@@ -10,8 +10,6 @@ on:
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,8 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pandas requests html5lib lxml
-          pip install pandas requests html5lib lxml beautifulsoup4
+          pip install selenium webdriver-manager pandas
 
       - name: Run Scraper
         run: python myscript.py
@@ -33,10 +30,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          # التحقق من وجود ملفات CSV قبل إضافتها لتجنب خطأ 128
-          if ls *.csv >/dev/null 2>&1; then
-            git add *.csv
-            git diff --quiet && git diff --staged --quiet || (git commit -m "Update scraped data" && git push)
-          else
-            echo "No CSV files found to commit."
-          fi
+          git add *.csv || echo "No files to add"
+          git commit -m "Update scraped data" || echo "Nothing to commit"
+          git push
