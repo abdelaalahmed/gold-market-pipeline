@@ -22,7 +22,7 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: pip install pandas yfinance lxml html5lib
+        run: pip install pandas yfinance
 
       - name: Run Scraper
         run: python myscript.py
@@ -31,10 +31,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          # رفع الملفات فقط إذا وُجدت
-          if ls *.csv >/dev/null 2>&1; then
-            git add *.csv
-            git diff --quiet && git diff --staged --quiet || (git commit -m "Update market data" && git push)
-          else
-            echo "No files created."
-          fi
+          # رفع ملفات الـ CSV الثلاثة
+          git add gold_data.csv oil_data.csv dollar_egp.csv
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update gold, oil and dollar data" && git push)
