@@ -24,6 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pandas requests html5lib lxml
+          pip install pandas requests html5lib lxml beautifulsoup4
 
       - name: Run Scraper
         run: python myscript.py
