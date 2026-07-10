@@ -1,2 +1,35 @@
-- name: Install dependencies
+name: Gold Market Pipeline Runner
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
         run: pip install pandas yfinance
+
+      - name: Run Scraper
+        run: python myscript.py
+
+      - name: Commit and push data
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add *.csv
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update scraped data" && git push)
