@@ -1,32 +1,37 @@
-import requests
-import pandas as pd
-from io import StringIO
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+import os
 
-# محاكاة متصفح حقيقي جداً
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    'Referer': 'https://www.google.com/',
-    'Accept-Language': 'en-US,en;q=0.9,ar;q=0.8'
-}
+# إعدادات المتصفح ليعمل في GitHub Actions
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
 
-def get_data(url, filename):
-    print(f"--- جاري السحب من: {url} ---")
-    try:
-        response = requests.get(url, headers=headers, timeout=20)
-        # نستخدم html5lib لأنه الأكثر قدرة على قراءة الجداول المعقدة
-        tables = pd.read_html(StringIO(response.text), flavor='html5lib')
-        
-        if tables:
-            df = tables[0]
-            df.to_csv(filename, index=False)
-            print(f"تم بنجاح حفظ: {filename}")
-        else:
-            print(f"تحذير: لم يتم العثور على جداول في الرابط: {url}")
-            
-    except Exception as e:
-        print(f"خطأ أثناء السحب من {url}: {e}")
+def download_data():
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    
+    # 1. الذهب
+    print("Downloading Gold...")
+    driver.get("https://sa.investing.com/commodities/gold-historical-data")
+    time.sleep(10) # انتظار تحميل الصفحة
+    # هنا قد تحتاج لإضافة كود النقر على زر التحميل (Download) إذا لزم الأمر
+    
+    # 2. النفط
+    print("Downloading Oil...")
+    driver.get("https://sa.investing.com/commodities/brent-oil-historical-data")
+    time.sleep(10)
+    
+    # 3. البنك المركزي
+    print("Downloading CBE Data...")
+    driver.get("https://www.cbe.org.eg/ar/economic-research/statistics/cbe-exchange-rates/historical-data")
+    time.sleep(10)
+    
+    driver.quit()
+    print("Download process completed.")
 
-# تنفيذ السحب من مواقعك
-get_data('https://sa.investing.com/commodities/gold-historical-data', 'gold_data.csv')
-get_data('https://sa.investing.com/commodities/brent-oil-historical-data', 'oil_data.csv')
-get_data('https://www.cbe.org.eg/ar/economic-research/statistics/cbe-exchange-rates/historical-data', 'cbe_data.csv')
+if __name__ == "__main__":
+    download_data()
