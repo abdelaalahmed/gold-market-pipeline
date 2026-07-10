@@ -1,3 +1,5 @@
-beautifulsoup4
-requests
 pandas
+requests
+lxml
+beautifulsoup4
+html5lib
