@@ -1,4 +1,2 @@
 pandas
-requests
-lxml
-cloudscraper
+playwright
