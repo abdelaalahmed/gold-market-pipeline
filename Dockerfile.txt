@@ -1,0 +1,15 @@
+# استخدام نسخة خفيفة من بايثون
+FROM python:3.9-slim
+
+# تحديد مجلد العمل داخل الحاوية
+WORKDIR /app
+
+# نسخ ملف المكتبات وتثبيتها
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# نسخ كود السكربت الخاص بك
+COPY scraper.py .
+
+# أمر تشغيل السكربت
+CMD ["python", "scraper.py"]
