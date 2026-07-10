@@ -22,7 +22,8 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: pip install pandas yfinance
+        run: |
+          pip install pandas requests html5lib lxml
 
       - name: Run Scraper
         run: python myscript.py
@@ -31,5 +32,10 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git add *.csv
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update scraped data" && git push)
+          # التحقق من وجود ملفات CSV قبل إضافتها لتجنب خطأ 128
+          if ls *.csv >/dev/null 2>&1; then
+            git add *.csv
+            git diff --quiet && git diff --staged --quiet || (git commit -m "Update scraped data" && git push)
+          else
+            echo "No CSV files found to commit."
+          fi
