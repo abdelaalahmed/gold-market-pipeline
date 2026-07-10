@@ -1,5 +1,4 @@
 name: Gold Market Pipeline Runner
-
 on:
   push:
     branches: [ "main" ]
@@ -21,7 +20,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install selenium webdriver-manager pandas
+          pip install selenium pandas
+          # تثبيت المتصفح تلقائياً
+          sudo apt-get update
+          sudo apt-get install -y chromium-chromedriver
 
       - name: Run Scraper
         run: python myscript.py
@@ -30,6 +32,5 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git add *.csv || echo "No files to add"
-          git commit -m "Update scraped data" || echo "Nothing to commit"
-          git push
+          git add *.csv
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update scraped data" && git push)
