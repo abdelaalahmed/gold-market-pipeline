@@ -1,0 +1,15 @@
+{
+	"name": "adf-gold-market-2026",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "germanywestcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ccb38319-67dc-450a-abb9-f85a9a2b4c06",
+		"tenantId": "0bc92751-071a-4e2c-a48b-633206fef374"
+	}
+}

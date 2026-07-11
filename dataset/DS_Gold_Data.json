@@ -1,0 +1,62 @@
+{
+	"name": "DS_Gold_Data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "f_gold.csv",
+				"folderPath": "gold data",
+				"container": "bronze"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Gram_24_USD",
+				"type": "String"
+			},
+			{
+				"name": "Gram_21_USD",
+				"type": "String"
+			},
+			{
+				"name": "Gram_24_EGP_Buy",
+				"type": "String"
+			},
+			{
+				"name": "Gram_21_EGP_Buy",
+				"type": "String"
+			},
+			{
+				"name": "Gram_24_EGP_Sell",
+				"type": "String"
+			},
+			{
+				"name": "Gram_21_EGP_Sell",
+				"type": "String"
+			},
+			{
+				"name": "Commodity_ID",
+				"type": "String"
+			},
+			{
+				"name": "Market_ID",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

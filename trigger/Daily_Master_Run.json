@@ -1,0 +1,32 @@
+{
+	"name": "Daily_Master_Run",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_Master_Data_Loader",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2026-07-05T08:16:00",
+				"timeZone": "Egypt Standard Time",
+				"schedule": {
+					"minutes": [
+						1
+					],
+					"hours": [
+						8
+					]
+				}
+			}
+		}
+	}
+}

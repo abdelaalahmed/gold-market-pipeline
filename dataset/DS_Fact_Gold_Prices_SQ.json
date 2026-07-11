@@ -1,0 +1,60 @@
+{
+	"name": "DS_Fact_Gold_Prices_SQ",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSQLDatabase_LS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DateKey",
+				"type": "date"
+			},
+			{
+				"name": "Commodity_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Market_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Gram_24_USD",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Gram_21_USD",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Gram_24_EGP_Buy",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Gram_21_EGP_Buy",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Gram_24_EGP_Sell",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Gram_21_EGP_Sell",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Fact_Gold_Prices"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
